@@ -21,6 +21,9 @@ if uploaded_file is not None:
     st.title("Top Stats")
     if st.sidebar.button("Show Analysis"):
         num_messages,words,num_media_msg,num_links=helper.fetch_stats(selected_user,df)
+        overall_sentiment=helper.print_final_sentiment(df)
+        
+        st.sidebar.title(overall_sentiment)
 
         col1,col2,col3,col4 = st.columns(4)
         with col1:
