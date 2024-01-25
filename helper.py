@@ -101,6 +101,38 @@ def Activity_heatmap(selected_user,df):
         df = df[df['user'] == selected_user]
     heatmap_table=df.pivot_table(index='day',columns='period',values='message',aggfunc='count').fillna(0)
     return heatmap_table
+def analyze_sentiment(message):
+    analysis = TextBlob(message)
+
+    # Check if sentiment analysis is successful
+    if analysis.sentiment.polarity == NotImplemented:
+        return 'Invalid'
+
+    # Classify the sentiment as positive, negative, or neutral
+    if analysis.sentiment.polarity > 0:
+        return 'Positive'
+    elif analysis.sentiment.polarity < 0:
+        return 'Negative'
+    else:
+        return 'Neutral'
+
+
+def analyze_whatsapp_chat(chat):
+    sentiments = [analyze_sentiment(message) for message in chat]
+
+    # Calculate the overall sentiment, excluding invalid results
+    valid_sentiments = [s for s in sentiments if s != 'Invalid']
+
+    if valid_sentiments:
+        overall_sentiment = max(set(valid_sentiments), key=valid_sentiments.count)
+    else:
+        overall_sentiment = 'No valid sentiments'
+
+    return overall_sentiment
+
+def print_final_sentiment(df):
+    return analyze_whatsapp_chat(df['message'])
+    
 
 
 
