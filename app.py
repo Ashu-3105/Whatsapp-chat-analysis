@@ -133,5 +133,5 @@ if app_mode=='Instructions':
     st.text("Export the chat Without Media.. ")
     st.text("Save the Exported Chat as .txt File.")
     st.text("Now go to analysis section upload the .txt file of group chat and Enjoy the result.")
-    st.header("Note:)
+    st.header("Note:")
     st.text("This is fully secure we don't store any users information about chat file this is only accessible for the particular user. ")
