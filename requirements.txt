@@ -4,6 +4,5 @@ pandas
 nltk
 emoji
 wordcloud
-re
 seaborn
 matplotlib
